@@ -5,7 +5,7 @@ import random
 bl_info = {
     "name": "Collections Color Random",
     "author": "Jorge Hernandez Melendez",
-    "version": (0, 1),
+    "version": (0, 2),
     "blender": (2, 91, 0),
     "location": "",
     "description": "Random colors for all Collections",
@@ -28,19 +28,25 @@ class RandomColorCollections(Operator):
 
         colors = []
         used_colors = []
+        hardcoded_bcolors = 8
 
         # recreamos un array con los colores hardcoded que trae blende
         # por ahora trae 8 colores
-        for i in range(8):
+        for i in range(hardcoded_bcolors):
             colors.append('COLOR_' + str(i+1).zfill(2))
 
         # obtenermos un color aleatoreo
         def get_rand_color():
+            intentos_maximos = hardcoded_bcolors
+            chk_control = 0
             if len(used_colors) == 0:
                 color = random.choice(colors)
                 return color
             else:
                 color = random.choice(colors)
+                while color in used_colors and chk_control <= intentos_maximos:
+                    color = random.choice(colors)
+                    chk_control += 1
                 return color
 
         # obtener un elemento que sea de los menos repetidos de un array:
@@ -113,4 +119,3 @@ def unregister():
 
 if __name__ == "__main__":
     register()
-
