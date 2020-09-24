@@ -7,7 +7,7 @@ from itertools import cycle
 bl_info = {
     "name": "Collections Color Random",
     "author": "Jorge Hernandez Melendez",
-    "version": (0, 2),
+    "version": (0, 3),
     "blender": (2, 91, 0),
     "location": "",
     "description": "Random colors for all Collections",
