@@ -35,7 +35,12 @@ class RandomColorCollections(Operator):
         for i in range(hardcoded_bcolors):
             colors.append('COLOR_' + str(i + 1).zfill(2))
 
-        pool = cycle(colors)
+        if bpy.types.WindowManager.random_color_collections_toggle % 2 == 0:
+            pool = cycle(colors)
+            bpy.types.WindowManager.random_color_collections_toggle = 1
+        else:
+            pool = cycle(colors[::-1])
+            bpy.types.WindowManager.random_color_collections_toggle = 0
 
         for col in bpy.data.collections:
             color = next(pool)
@@ -76,12 +81,16 @@ def register():
     for cls in all_classes:
         register_class(cls)
 
+    bpy.types.WindowManager.random_color_collections_toggle = 0
+
 
 def unregister():
     from bpy.utils import unregister_class
 
     for cls in reversed(all_classes):
         unregister_class(cls)
+
+    del bpy.types.WindowManager.random_color_collections_toggle
 
 
 if __name__ == "__main__":
