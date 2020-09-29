@@ -46,6 +46,10 @@ class RandomColorCollections(Operator):
             color = next(pool)
             col.color_tag = color
 
+        for area in bpy.context.screen.areas:
+            if area.type == 'OUTLINER':
+                area.tag_redraw()
+
         return {'FINISHED'}
 
 
