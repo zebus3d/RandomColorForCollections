@@ -1,2 +1,2 @@
-# Random Color For Collections ( Blender 2.91.0 Alpha )
-Random Color for all Collections
+# Automatic Colors For Collections ( Blender 2.91.0 Alpha )
+Automatic Colors for all Collections
